@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>video_tool - 틱톡 로그인 완료</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f0f10;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+    color: #eaeaea;
+    padding: 24px;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: #18181a;
+    border: 1px solid #2a2a2d;
+    border-radius: 16px;
+    padding: 32px 28px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #7cf7a3;
+    background: rgba(124, 247, 163, 0.1);
+    border: 1px solid rgba(124, 247, 163, 0.25);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .badge.error {
+    color: #ff8a8a;
+    background: rgba(255, 138, 138, 0.1);
+    border-color: rgba(255, 138, 138, 0.25);
+  }
+  h1 {
+    font-size: 19px;
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #a3a3a8;
+    margin: 0 0 20px;
+  }
+  .code-box {
+    background: #0c0c0d;
+    border: 1px solid #2a2a2d;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 13px;
+    word-break: break-all;
+    color: #7cf7a3;
+    line-height: 1.5;
+    cursor: pointer;
+    user-select: all;
+    margin-bottom: 12px;
+  }
+  .code-box.empty {
+    color: #666;
+    cursor: default;
+    user-select: none;
+  }
+  button {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: #7cf7a3;
+    color: #0f0f10;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  button:hover { opacity: 0.9; }
+  button:disabled {
+    background: #2a2a2d;
+    color: #666;
+    cursor: default;
+  }
+  .toast {
+    text-align: center;
+    font-size: 13px;
+    color: #7cf7a3;
+    margin-top: 10px;
+    height: 16px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .toast.show { opacity: 1; }
+  .meta {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #2a2a2d;
+    font-size: 12px;
+    color: #666;
+  }
+  .meta code {
+    color: #999;
+    background: #0c0c0d;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div id="badge" class="badge">로그인 완료</div>
+    <h1 id="title">인가 코드가 발급됐어요</h1>
+    <p id="desc">아래 코드를 복사해서 비디오툴에 붙여넣어주세요. 코드는 시간이 지나면 만료되니 바로 사용하는 게 좋아요.</p>
+
+    <div id="codeBox" class="code-box empty">코드를 불러오는 중...</div>
+
+    <button id="copyBtn" disabled>코드 복사하기</button>
+    <div id="toast" class="toast">복사됐어요 ✓</div>
+
+    <div class="meta" id="meta"></div>
+  </div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const error = params.get('error');
+  const errorDescription = params.get('error_description');
+  const state = params.get('state');
+
+  const badge = document.getElementById('badge');
+  const title = document.getElementById('title');
+  const desc = document.getElementById('desc');
+  const codeBox = document.getElementById('codeBox');
+  const copyBtn = document.getElementById('copyBtn');
+  const toast = document.getElementById('toast');
+  const meta = document.getElementById('meta');
+
+  if (error) {
+    badge.textContent = '로그인 실패';
+    badge.classList.add('error');
+    title.textContent = '로그인 중 오류가 발생했어요';
+    desc.textContent = errorDescription || error;
+    codeBox.textContent = error;
+    codeBox.classList.remove('empty');
+  } else if (code) {
+    codeBox.textContent = code;
+    codeBox.classList.remove('empty');
+    copyBtn.disabled = false;
+
+    if (state) {
+      meta.innerHTML = 'state: <code>' + state + '</code>';
+    }
+  } else {
+    title.textContent = '인가 코드가 없어요';
+    desc.textContent = '이 페이지는 틱톡 로그인 후 자동으로 리디렉션될 때만 정상적으로 코드를 표시해요. 직접 접속한 경우라면 비디오툴에서 다시 로그인해주세요.';
+    codeBox.textContent = '(code 파라미터 없음)';
+  }
+
+  function doCopy(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    return Promise.resolve();
+  }
+
+  copyBtn.addEventListener('click', () => {
+    const text = codeBox.textContent;
+    doCopy(text).then(() => {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1500);
+    });
+  });
+
+  codeBox.addEventListener('click', () => {
+    if (!code) return;
+    doCopy(codeBox.textContent).then(() => {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1500);
+    });
+  });
+</script>
+</body>
+</html>
