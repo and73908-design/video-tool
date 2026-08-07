@@ -45,11 +45,51 @@
   </section>
 
   <section class="wrap">
-    <h2><span class="idx">SCREEN</span>화면 미리보기</h2>
-    <div class="shot">
-      <div class="icon">▣</div>
-      <div class="cap main">대본 파싱 결과 화면 캡처 예정</div>
-      <div class="cap">실제 서비스 화면을 캡처해 이 자리에 추가할 예정입니다</div>
+    <h2><span class="idx">PROCESS</span>동작 방식</h2>
+    <div class="diagram-frame">
+      <svg class="infographic" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arrow-m" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" class="arrow-head"/></marker>
+  <marker id="arrow-m-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" class="arrow-head-accent"/></marker>
+  <marker id="arrow-m-2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" class="arrow-head-2"/></marker>
+
+  <symbol id="i-doc-draft" viewBox="0 0 32 32">
+    <path d="M8 4 H20 L26 10 V28 H8 Z"/><path d="M20 4 V10 H26"/>
+    <path d="M12 16 H22" stroke-dasharray="2 2"/><path d="M12 20 H22" stroke-dasharray="2 2"/><path d="M12 24 H18" stroke-dasharray="2 2"/>
+  </symbol>
+  <symbol id="i-doc-final" viewBox="0 0 32 32">
+    <path d="M8 4 H20 L26 10 V28 H8 Z"/><path d="M20 4 V10 H26"/>
+    <path d="M12 16 H22"/><path d="M12 20 H22"/><path d="M12 24 H18"/>
+  </symbol>
+  <symbol id="i-folder" viewBox="0 0 32 32"><path d="M4 10 V26 H28 V12 H16 L13 9 H4 Z"/></symbol>
+  <symbol id="i-tts" viewBox="0 0 32 32">
+    <path d="M6 20 V12"/><path d="M11 24 V8"/><path d="M16 20 V12"/><path d="M21 26 V6"/><path d="M26 20 V12"/>
+  </symbol>
+  <symbol id="i-caption" viewBox="0 0 32 32">
+    <rect x="4" y="6" width="24" height="18" rx="1.5"/><path d="M8 19 H20"/><path d="M8 22 H16"/>
+  </symbol>
+  <symbol id="i-emphasis" viewBox="0 0 32 32">
+    <rect x="4" y="6" width="24" height="18" rx="1.5"/><path d="M8 19 H20"/><path d="M8 22 H16"/>
+    <path d="M24 3 L25 5.2 L27 6 L25 6.8 L24 9 L23 6.8 L21 6 L23 5.2 Z" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="i-bgm" viewBox="0 0 32 32">
+    <circle cx="10" cy="24" r="3"/><circle cx="22" cy="21" r="3"/><path d="M13 24 V8 L25 6 V21"/>
+  </symbol>
+  <symbol id="i-image" viewBox="0 0 32 32">
+    <rect x="4" y="6" width="24" height="20" rx="1.5"/><circle cx="11" cy="13" r="2.2"/><path d="M5 23 L12 16 L17 21 L22 14 L27 23"/>
+  </symbol>
+  <symbol id="i-scene" viewBox="0 0 32 32">
+    <rect x="4" y="6" width="24" height="20" rx="1.5"/><path d="M13 12 L21 16 L13 20 Z" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="i-avatar" viewBox="0 0 32 32">
+    <circle cx="16" cy="11" r="5"/><path d="M6 27 C6 19 12 16 16 16 C20 16 26 19 26 27"/>
+  </symbol>
+  <symbol id="i-transition" viewBox="0 0 32 32">
+    <rect x="5" y="8" width="15" height="16" rx="1.2"/><rect x="12" y="8" width="15" height="16" rx="1.2" opacity=".45"/>
+  </symbol>
+</defs>
+<rect class="box-accent" x="30" y="130" width="220" height="90" rx="3"/><use href="#i-doc-final" x="120" y="141" width="38" height="38" class="icon icon-accent"/><text class="lbl" x="140" y="200" text-anchor="middle">정식대본</text><text class="tag-accent" x="140" y="216" text-anchor="middle">structured script</text><path class="ln" d="M250 175 C 400 175, 420 24, 560 24" marker-end="url(#arrow-m)"/><rect class="box" x="560" y="-2" width="300" height="52" rx="3"/><use href="#i-tts" x="574" y="7" width="34" height="34" class="icon"/><text class="lbl" x="620" y="29">TTS 음성</text><path class="ln" d="M250 175 C 400 175, 420 88, 560 88" marker-end="url(#arrow-m)"/><rect class="box" x="560" y="62" width="300" height="52" rx="3"/><use href="#i-caption" x="574" y="71" width="34" height="34" class="icon"/><text class="lbl" x="620" y="93">자막</text><path class="ln" d="M250 175 C 400 175, 420 152, 560 152" marker-end="url(#arrow-m)"/><rect class="box" x="560" y="126" width="300" height="52" rx="3"/><use href="#i-bgm" x="574" y="135" width="34" height="34" class="icon"/><text class="lbl" x="620" y="157">BGM</text><path class="ln" d="M250 175 C 400 175, 420 216, 560 216" marker-end="url(#arrow-m)"/><rect class="box" x="560" y="190" width="300" height="52" rx="3"/><use href="#i-emphasis" x="574" y="199" width="34" height="34" class="icon"/><text class="lbl" x="620" y="221">강조자막</text><path class="ln" d="M250 175 C 400 175, 420 280, 560 280" marker-end="url(#arrow-m)"/><rect class="box" x="560" y="254" width="300" height="52" rx="3"/><use href="#i-image" x="574" y="263" width="34" height="34" class="icon"/><text class="lbl" x="620" y="285">이미지·영상</text></svg>
+      <div class="cap">정식대본 한 파일에서 다섯 종류의 제작 데이터를 동시에 추출합니다</div>
     </div>
   </section>
 
