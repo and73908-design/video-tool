@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개별모듈생성 · video_tool</title>
+<meta name="description" content="파싱된 데이터를 바탕으로 TTS 음성, 자막 파일, 장면 이미지를 씬 단위로 개별 생성합니다. 각 모듈은 독립적으로 재생성할 수 있어, 특정 장면만 수정할 때 전체를 다시 만들 필요가 없습니다.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="header-row">
+    <a class="logo" href="index.html"><span class="dot"></span>video_tool<span class="sub">/ 유튜브·틱톡 자동화 파이프라인</span></a>
+    <nav class="main">
+      <a href="script.html" class="">대본작성</a>
+      <a href="parsing.html" class="">파싱</a>
+      <a href="module.html" class="current">개별모듈생성</a>
+      <a href="scene.html" class="">씬별합성</a>
+      <a href="assemble.html" class="">최종조립</a>
+      <a href="avatar.html" class="">아바타입히기</a>
+      <a href="upload.html" class="">자동업로드</a>
+      <span class="sep"></span>
+      <a href="help.html" class="">도움말</a>
+      <a href="contact.html" class="">연락처</a>
+    </nav>
+  </div>
+</header>
+<div class="timeline">
+  <div class="timeline-row">
+    <a class="timeline-seg done" href="script.html"><span class="n">01</span>대본작성</a>
+        <a class="timeline-seg done" href="parsing.html"><span class="n">02</span>파싱</a>
+        <a class="timeline-seg active" href="module.html"><span class="n">03</span>개별모듈생성</a>
+        <a class="timeline-seg" href="scene.html"><span class="n">04</span>씬별합성</a>
+        <a class="timeline-seg" href="assemble.html"><span class="n">05</span>최종조립</a>
+        <a class="timeline-seg" href="avatar.html"><span class="n">06</span>아바타입히기</a>
+        <a class="timeline-seg" href="upload.html"><span class="n">07</span>자동업로드</a>
+  </div>
+</div>
+
+<main>
+  <section class="hero wrap fade-in">
+    <div class="eyebrow">STAGE 03 / 07</div>
+    <h1>음성·자막·이미지를 각각 <span class="mono-accent">모듈</span>로 만든다</h1>
+    <p class="lead">파싱된 데이터를 바탕으로 TTS 음성, 자막 파일, 장면 이미지를 씬 단위로 개별 생성합니다. 각 모듈은 독립적으로 재생성할 수 있어, 특정 장면만 수정할 때 전체를 다시 만들 필요가 없습니다.</p>
+  </section>
+
+  <section class="wrap">
+    <h2><span class="idx">SCREEN</span>화면 미리보기</h2>
+    <div class="shot">
+      <div class="icon">▣</div>
+      <div class="cap main">모듈 생성 진행 화면 캡처 예정</div>
+      <div class="cap">실제 서비스 화면을 캡처해 이 자리에 추가할 예정입니다</div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2><span class="idx">CAN DO</span>이 단계에서 할 수 있는 일</h2>
+    <ul class="feature-list">
+    <li><b>씬별 음성 생성</b> — 로컬 TTS 엔진으로 나레이션 음성을 장면 단위로 생성합니다.</li>
+    <li><b>타임코드 자막</b> — 생성된 음성 길이에 맞춰 자막 파일의 타이밍을 자동으로 계산합니다.</li>
+    <li><b>이미지 정리</b> — 외부 이미지 생성 도구로 받은 장면 이미지를 씬 번호에 맞게 자동 배치합니다.</li>
+    <li><b>부분 재생성</b> — 마음에 들지 않는 장면 하나만 골라 다시 생성할 수 있습니다.</li>
+    </ul>
+    <div class="stage-nav">
+      <a href="parsing.html">← 파싱</a>
+      <a href="scene.html">씬별합성 →</a>
+    </div>
+  </section>
+</main>
+<footer class="site">
+  <div class="wrap footer-row">
+    <div class="footer-links">
+      <a href="help.html">도움말</a>
+      <a href="contact.html">연락처</a>
+      <a href="terms.html">서비스 약관 및 개인정보 보호정책</a>
+    </div>
+    <div class="footer-note">video_tool — 개인 채널 운영자를 위한 콘텐츠 제작 자동화 도구</div>
+  </div>
+</footer>
+</body>
+</html>
